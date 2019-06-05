@@ -18,6 +18,12 @@ img {
   max-width: 100%;
 }
 
+@media (max-width: 940px) {
+  input, select, .form-control {
+    font-size: 16px !important;
+  }
+}
+
 /*COMPARE CARS*/
 .compare-list {
   width: 100%;
