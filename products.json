@@ -1,0 +1,58 @@
+[
+    {
+        "id": "0001",
+        "make":"Apple",
+        "model":"iPhone 8",
+        "body": {
+            "dimensions":"20x200x300",
+            "weight":"200g"
+        },
+        "display": {
+            "type":"AMOLED",
+            "size":"5.8 inches",
+            "resolution":"1080 x 2340 pixels, 19.5:9 ratio (~403 ppi density)"
+        }
+    },
+    {
+        "id": "0002",
+        "make":"Apple",
+        "model":"iPhone X",
+        "body": {
+            "dimensions":"23x200x300",
+            "weight":"220g"
+        },
+        "display": {
+            "type":"AMOLED",
+            "size":"6 inches",
+            "resolution":"1180 x 2340 pixels, 19.5:9 ratio (~423 ppi density)"
+        }
+    },
+    {
+        "id": "0003",
+        "make":"Xiaomi",
+        "model":"Mi 7",
+        "body": {
+            "dimensions":"20x200x300",
+            "weight":"200g"
+        },
+        "display": {
+            "type":"AMOLED",
+            "size":"5.8 inches",
+            "resolution":"1080 x 2340 pixels, 19.5:9 ratio (~403 ppi density)"
+        }
+    },
+    {
+        "id": "0004",
+        "make":"Xiaomi",
+        "model":"Mi 8",
+        "body": {
+            "dimensions":"23x200x300",
+            "weight":"220g"
+        },
+        "display": {
+            "type":"AMOLED",
+            "size":"6 inches",
+            "resolution":"1180 x 2340 pixels, 19.5:9 ratio (~423 ppi density)"
+        }
+    }
+]

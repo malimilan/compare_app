@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Compare app</title>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"> -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/remodal.css">
+    <link rel="stylesheet" href="/css/remodal-default-theme.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <section class="compare-section">
+        <div class="container compare-container">
+
+            <div class="compare-list">                        
+                
+
+                <div class="card_info">
+                    <h2>Product comparison</h2>
+                    <p>Use PLUS sign on the right to add a product to comparison table</p>
+                </div>
+
+                <div id="jsCards" class="cards_products" data-children="0">
+                    <!-- Product card will appear here -->
+                </div>
+
+                <a class="card_add_product" id="jsCardAddBtn" href="#comparemodal">
+                    <p>+<span class="visible-xs">Add a product to comparison table</span></p>
+                </a>
+
+
+                <!-- DATA GROUP -->
+                <div class="compare_data_list">
+
+                    <div class="list_title">Technical data</div>
+
+                    <!-- ROW -->
+                    <div class="data_row">
+                        <div class="row_label">Size</div>
+
+                        <div class="row_values" id="data_size">
+                            <!-- data will appear here-->
+                        </div>
+                    </div>
+                    <!-- ROW -->
+                    <!-- ROW -->
+                    <div class="data_row">
+                        <div class="row_label">Weight</div>
+
+                        <div class="row_values" id="data_weight">
+                                <!-- data will appear here-->
+                        </div>
+                    </div>
+                    <!-- ROW -->
+                    <!-- ROW -->
+                    <div class="data_row">
+                        <div class="row_label">OS</div>
+
+                        <div class="row_values" id="data_os">
+                                <!-- data will appear here-->
+                        </div>
+                    </div>
+                    <!-- ROW -->
+
+                </div>
+                <!-- DATA GROUP -->
+
+
+
+                <!-- DATA GROUP -->
+                <div class="compare_data_list">
+
+                    <div class="list_title">Screen</div>
+
+                    <!-- ROW -->
+                    <div class="data_row">
+                        <div class="row_label">Resolution</div>
+
+                        <div class="row_values" id="data_resolution">
+                                <!-- data will appear here-->
+                        </div>
+                    </div>
+                    <!-- ROW -->
+                    <!-- ROW -->
+                    <div class="data_row">
+                        <div class="row_label">Protection</div>
+
+                        <div class="row_values" id="data_protection">
+                            <!-- data will appear here-->
+                        </div>
+                    </div>
+                    <!-- ROW -->
+
+                </div>
+                <!-- DATA GROUP -->
+
+
+                <!-- DATA GROUP -->
+                <div class="compare_data_list">
+
+                    <div class="list_title">Capacity</div>
+
+                    <!-- ROW -->
+                    <div class="data_row">
+                        <div class="row_label">Battery</div>
+
+                        <div class="row_values" id="data_battery_c">
+                            <!-- data will appear here-->
+                        </div>
+                    </div>
+                    <!-- ROW -->
+                    <!-- ROW -->
+                    <div class="data_row">
+                        <div class="row_label">Talk time</div>
+
+                        <div class="row_values" id="data_talk_time">
+                            <!-- data will appear here-->
+                        </div>
+                    </div>
+                    <!-- ROW -->
+
+                </div>
+                <!-- DATA GROUP -->
+
+            </div>
+
+        </div>
+    </section>
+
+    <section style="height:1000px; background:#eee;"></section>
+
+
+    <div class="remodal" id="comparemodal" data-remodal-id="comparemodal" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
+        <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+        <div class="choose__select">            
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="">Choose a brand</label>
+                    <select class="form-control" id="brandList">
+                        <option value="0" default>Select a brand</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="">Choose a model</label>
+                    <select class="form-control" id="modelList" disabled>
+                        <option value="" default>Choose a model</option>
+                    </select>
+                </div>
+            </div>
+            <button class="remodal-confirm" data-remodal-action="confirm"  id="jsAddToCompareBtn">Add</button>
+            <!-- class="remodal-confirm" data-remodal-action="confirm" -->
+        </div>
+        <!-- <br>
+        <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+        <button data-remodal-action="confirm" class="remodal-confirm">OK</button> -->
+    </div>
+
+
+
+
+
+    <script src="main.js"></script>
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="js/remodal.min.js"></script>
+
+    <!-- Events -->
+    <script>
+    $(document).on('opening', '.remodal', function () {
+        console.log('opening');
+    });
+
+    $(document).on('opened', '.remodal', function () {
+        console.log('opened');
+    });
+
+    $(document).on('closing', '.remodal', function (e) {
+        console.log('closing' + (e.reason ? ', reason: ' + e.reason : ''));
+    });
+
+    $(document).on('closed', '.remodal', function (e) {
+        console.log('closed' + (e.reason ? ', reason: ' + e.reason : ''));
+    });
+
+    $(document).on('confirmation', '.remodal', function () {
+        console.log('confirmation');
+    });
+
+    $(document).on('cancellation', '.remodal', function () {
+        console.log('cancellation');
+    });
+
+    //  Usage:
+    //  $(function() {
+    //
+    //    // In this case the initialization function returns the already created instance
+    //    var inst = $('[data-remodal-id=modal]').remodal();
+    //
+    //    inst.open();
+    //    inst.close();
+    //    inst.getState();
+    //    inst.destroy();
+    //  });
+
+    //  The second way to initialize:
+    $('[data-remodal-id=modal2]').remodal({
+        modifier: 'with-red-theme'
+    });
+    </script>
+
+</body>
+</html>

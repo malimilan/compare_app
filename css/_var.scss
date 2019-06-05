@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
+
+$small: 940px;
+
+@mixin min-small(){
+    @media(min-width: $small){
+        @content;
+    }
+}
+@mixin small(){
+    @media(max-width: $small){
+        @content;
+    }
+}
