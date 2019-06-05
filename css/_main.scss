@@ -16,8 +16,8 @@ img {
     max-width: 100%;
 }
 
-input, select {
+input, select, .form-control {
     @include small {
-        font-size: 16px;
+        font-size: 16px!important;
     }
 }
