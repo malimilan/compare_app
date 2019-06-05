@@ -16,7 +16,7 @@ img {
     max-width: 100%;
 }
 
-input {
+input, select {
     @include small {
         font-size: 16px;
     }
