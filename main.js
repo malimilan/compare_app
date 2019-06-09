@@ -2,7 +2,7 @@ const fonoapiToken = 'a4c77c8691f5ab5f5cf58fa837a1d292e6184d7b5ebc6ff5';
 
 // DOM elements
 const brandList = document.getElementById('brandList');
-const modelList = document.getElementById('modelList');
+var modelList = document.getElementById('modelList');
 
 
 const getProducts = async () => {
@@ -11,8 +11,7 @@ const getProducts = async () => {
 
     const products = Array.from(retrievedProducts);
 
-    return products;   
-
+    return products;
 }
 
 getProducts().then( (products) => {
@@ -69,7 +68,12 @@ getProducts().then( (products) => {
         });
         let cardsChildren = Number(cards.dataset.children);
         cards.setAttribute('data-children', cardsChildren - 1);
-    
+
+        //remove from Session Storage
+        console.log(e.dataset.product_id);
+        let storedProducts = JSON.parse(sessionStorage.getItem('productsToCompare'));
+        let reducedStoredProducts = storedProducts.filter(storedProduct => storedProduct != e.dataset.product_id);
+        sessionStorage.setItem('productsToCompare', JSON.stringify(reducedStoredProducts));
     }
     
     
@@ -85,16 +89,49 @@ getProducts().then( (products) => {
 
     
     //ADD PRODUCT
-    const addToCompare = (productId) => {
+    var addToCompare = () => {
 
-        return function() {        
-            let selectedProduct = products.filter(product => product.id == modelList.value);
-            console.log(selectedProduct[0]);
+        return runCompare = function(productId) {  
+            
+            // if productId was not passed in, it means it was added by user. If number was passed to the function, it means it was done from Session Storage
+            if(typeof(productId) != 'number') {
+                var selectedProduct = products.filter(product => product.id == modelList.value);
+            } else {
+                var selectedProduct = products.filter(product => product.id == productId);
+            }
+
+            // if(typeof(productId) == 'number') {
+            //     var selectedProduct = products.filter(product => product.id == productId);
+            // }
+
+            console.log('selected: ' + selectedProduct[0]);
+            console.log('selected: ' + selectedProduct[0].Brand);
+
+            
+            // console.log(selectedProduct[0]);
     
             let cardsChildren = Number(cards.dataset.children);
             cards.setAttribute('data-children', cardsChildren + 1);
     
             const { id, Brand, DeviceName, announced, price, size, weight } = selectedProduct[0];
+
+            // start:: SESSION STORAGE
+            let productsToCompareJSON = sessionStorage.getItem('productsToCompare');
+            let productsToCompare = JSON.parse(productsToCompareJSON);
+            if(productsToCompare == null){
+                let productsToCompare = [];
+                productsToCompare.push(id);
+                console.log(productsToCompare);
+                sessionStorage.setItem('productsToCompare',JSON.stringify(productsToCompare));
+            } else {
+                // push new id only if product was added by user, and not from Session Storage on page refresh
+                if(typeof(productId) != 'number') {
+                    productsToCompare.push(id);
+                    sessionStorage.setItem('productsToCompare',JSON.stringify(productsToCompare));
+                }
+                console.log(productsToCompare);
+            }
+            // end:: SESSION STORAGE
     
             // start:: Add product card
             let productNode = `
@@ -151,11 +188,20 @@ getProducts().then( (products) => {
         }
     
     }
+
     
     addToCompareBtn.addEventListener('click', addToCompare(modelList.value));
 
+    // runCompare(12);  
+    // Fill DOM with products from SESSION Storage, if any
+    let sessionProducts = JSON.parse(sessionStorage.getItem('productsToCompare'));
+    if(sessionProducts != null){
+        sessionProducts.forEach((sessionProductID)=>{                
+            runCompare(sessionProductID);
+        });
+    };
+    // end:: Fill DOM with products from SESSION Storage, if any
 })
-
 
 
 
@@ -177,6 +223,7 @@ data_groups.forEach((data_group) => {
     })
 });
 // end:: Accordion on list data
+
 
 
 
